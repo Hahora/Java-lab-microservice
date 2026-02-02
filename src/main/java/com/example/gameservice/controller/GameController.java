@@ -1,8 +1,10 @@
 package com.example.gameservice.controller;
 
+import com.example.gameservice.config.GameConfig;
 import com.example.gameservice.model.Game;
 import com.example.gameservice.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,26 @@ public class GameController {
 
     @Autowired
     private GameService gameService;
+
+    @Autowired
+    private GameConfig gameConfig;
+
+    @Value("${greeting.message:Привет!}")
+    private String greetingMessage;
+
+    @Value("${app.name:Game Service}")
+    private String appName;
+
+    @GetMapping("/config")
+    public ResponseEntity<String> getConfig() {
+        String configInfo = String.format(
+                "Приложение: %s\n" +
+                        "Сообщение: %s\n" +
+                        "Конфигурация игр: %s",
+                appName, greetingMessage, gameConfig.toString()
+        );
+        return ResponseEntity.ok(configInfo);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Game> getGame(@PathVariable Long id) {
