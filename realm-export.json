@@ -1,0 +1,83 @@
+{
+  "realm": "spmia-realm",
+  "enabled": true,
+  "sslRequired": "none",
+  "roles": {
+    "realm": [
+      {
+        "name": "ostock-user",
+        "description": "Роль обычного пользователя"
+      },
+      {
+        "name": "ostock-admin",
+        "description": "Роль администратора"
+      }
+    ],
+    "client": {
+      "ostock": [
+        {
+          "name": "USER",
+          "description": "User client role"
+        },
+        {
+          "name": "ADMIN",
+          "description": "Admin client role"
+        }
+      ]
+    }
+  },
+  "clients": [
+    {
+      "clientId": "ostock",
+      "enabled": true,
+      "publicClient": false,
+      "secret": "ostock-secret",
+      "directAccessGrantsEnabled": true,
+      "serviceAccountsEnabled": true,
+      "authorizationServicesEnabled": false,
+      "standardFlowEnabled": true,
+      "redirectUris": [
+        "http://localhost:80*"
+      ],
+      "webOrigins": [
+        "*"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "username": "illary.huaylupo",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "Illary",
+      "lastName": "Huaylupo",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password1",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "ostock-admin"
+      ]
+    },
+    {
+      "username": "john.carnell",
+      "enabled": true,
+      "emailVerified": true,
+      "firstName": "John",
+      "lastName": "Carnell",
+      "credentials": [
+        {
+          "type": "password",
+          "value": "password1",
+          "temporary": false
+        }
+      ],
+      "realmRoles": [
+        "ostock-user"
+      ]
+    }
+  ]
+}
